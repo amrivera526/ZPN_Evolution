@@ -7,7 +7,7 @@
 import os
 from string import digits
 
-import numpy
+import numpy as np
 import scipy
 #import Image
 #import kiwisolver
@@ -43,7 +43,7 @@ import pickle
 # In[2]:
 
 
-sorted(numpy.arange(0.01,0.05,0.002),reverse=True)
+sorted(np.arange(0.01,0.05,0.002),reverse=True)
 
 
 # In[3]:
@@ -133,7 +133,7 @@ def ReadIn(f,GeneTag=''):
 
 def SimpMult(A,B):
     X=0.0
-    for i in numpy.arange(len(A)):
+    for i in np.arange(len(A)):
         X+=A[i]*B[i]
         
     return(X)
@@ -143,7 +143,7 @@ def SimpMult(A,B):
 # In[6]:
 
 
-numpy.exp(1)
+np.exp(1)
 
 
 # In[7]:
@@ -151,7 +151,7 @@ numpy.exp(1)
 
 def LogitEst(V1,V2,c):
     polynom = SimpMult(V1,V2)+c
-    Ans=1/(1+numpy.exp(-1*polynom))
+    Ans=1/(1+np.exp(-1*polynom))
     return(Ans)
 
 
@@ -194,7 +194,7 @@ def draw_logo(all_scores, fontfamily='Arial', size=80):
     ax.set_xticks(range(1,len(all_scores)+1))    
     ax.set_yticks(range(0,3))
     ax.set_xticklabels(range(1,len(all_scores)+1), rotation=90)
-    ax.set_yticklabels(numpy.arange(0,3,1))    
+    ax.set_yticklabels(np.arange(0,3,1))    
     seaborn.despine(ax=ax, trim=True)
     
     trans_offset = transforms.offset_copy(ax.transData, 
@@ -278,7 +278,7 @@ for pca in PCADat:
     SP = pca.split('\t')
     AAn=(SP[0][len(SP[0])-1])
     V =[]
-    for i in numpy.arange(len(SP)):
+    for i in np.arange(len(SP)):
         if i>0:
             Vi = float(SP[i].strip('\n'))
             V.append(Vi)
@@ -313,7 +313,7 @@ random.seed(2112)
 NumPam = 20*len(Aln[0].seq)
 print(NumPam)
 
-InitBetas=numpy.random.normal(0,0.1,NumPam) #Let Params vary since logistic functions can take input from -inf to inf
+InitBetas=np.random.normal(0,0.1,NumPam) #Let Params vary since logistic functions can take input from -inf to inf
 
 
 # In[15]:
@@ -329,7 +329,7 @@ LastZPN = ["ZP1ZPN2","ZP2ZPN4","ZP3ZPN1","ZP4ZPN2","ZPAXLastZPN","UMODZPN","TECT
 NameList=[]
 
 
-for i in numpy.arange(len(Aln)):
+for i in np.arange(len(Aln)):
     NS = Aln[i].name.split('_')
     #print(NS)
     NameList.append(NS[0]+NS[1])
@@ -389,7 +389,7 @@ b0=random.uniform(-0.1,0.1)
 
 AllDat=[]
 
-for i in numpy.arange(len(Aln)):
+for i in np.arange(len(Aln)):
     #print(ConvertRes(Aln[i].seq))
     XLine=ConvertRes(Aln[i].seq,mapper) #Decide which mapper you want
     #XLine.append(GroundTruth[i])
@@ -429,7 +429,7 @@ AlVal = ReadIn('AlgoAln_ZPN_PSI100c_MAFFTProMals_Test_202203242127.fasta')
 ValDat=[]
 NL=[]
 
-for j in numpy.arange(len(AlVal)):
+for j in np.arange(len(AlVal)):
     YLine = ConvertRes(AlVal[j].seq,mapper) #Decide which mapper you want
     ValDat.append(YLine)
     
@@ -440,7 +440,7 @@ for j in numpy.arange(len(AlVal)):
     
 GTV = [1.0 if NL[i] in LastZPN else 0.0 for i in range(len(NL))]
 #GTV
-#print(numpy.ndarray(ValDat))
+#print(np.ndarray(ValDat))
 
 
 # In[20]:
@@ -467,23 +467,23 @@ current_time = time.time()
 #LRs = [0,0.25,0.5,0.75,1]
 #LRs=[0.0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0]
 
-LR1=numpy.arange(0,1,0.02)
-LR2=numpy.arange(0.4,0.8,0.02) #ZOomed in
+LR1=np.arange(0,1,0.02)
+LR2=np.arange(0.4,0.8,0.02) #ZOomed in
 
-LR3 = numpy.arange(0.25,0.75,0.01)
-#LRs = [0.01*i for i in numpy.arange(101)]
+LR3 = np.arange(0.25,0.75,0.01)
+#LRs = [0.01*i for i in np.arange(101)]
 #Alphs = [0,0.001,0.01,0.1,1]
 Alphs=[1]
 #Cs =[1000,100,10,1]
 C1=[1,0.5,0.2,0.1,0.05,0.02,0.01,0.005,0.002,0.001,0.0005,0.0002,0.0001] # Skip first 4 C's In the 0.01 to the 0.05 range
-C2=sorted(numpy.arange(0.01,0.05,0.002),reverse=True) #Going down from 0.05 to 0.01
+C2=sorted(np.arange(0.01,0.05,0.002),reverse=True) #Going down from 0.05 to 0.01
 
-C3 = sorted(numpy.arange(0.01,0.1,0.002),reverse=True)
+C3 = sorted(np.arange(0.01,0.1,0.002),reverse=True)
 
 NumPam=[]
 Acc=[]
 
-GT = numpy.reshape(GroundTruth,(1,len(GroundTruth)))
+GT = np.reshape(GroundTruth,(1,len(GroundTruth)))
 GT=GT[0]
 
 
