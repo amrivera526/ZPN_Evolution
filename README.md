@@ -28,11 +28,22 @@ The parsimonious model can be selected, analyzed and visualized through the foll
 
 Combined version of scripts: MLClassify_ZPNPSI_AnalysisRes_CleanCombined_202204292011.py
 
+Multiclass version of machien learning classification: MLClassify_ZPN_Multiclass.py
+
+Example notebook for visualizing results from Multiclassification output: MLClassify_ZPN_Multiclass_AnalyzeResults.ipynb
+
 
 # Trees
 The maximum likelihood tree obtained is included in the newick format. 
 It also has nodal support values in TBE (transfer bootstrap expectation):
 BestTree_LGG_20211214TBE_Newick.tre
+
+We are also including subtrees used for by-clade sequence logos 
+
+(Note that labels of taxa are based on initial BLAST results, while final clade labels are based on phylogeny.)
+
+These subtrees are named in the following way : BestMLTree(CLADE).tre
+
 
 
 CONTACT:
